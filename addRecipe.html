@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    
+    <div>
+        <header>
+            <div class="logo">
+                food-app
+            </div>
+
+            <ul class="nav">
+                <li><a href="#">All recipes</a></li>
+                <li><a href="./addRecipe.html">Insert recipe</a></li>
+            </ul>
+        </header>
+
+        <div class="recipe-form">
+            <input placeholder="Title" id="recipe-title"/>
+            <input placeholder="Description" id="recipe-description"/>
+            <input placeholder="Instructions" id="recipe-instructions"/>
+            <input placeholder="Image URL" id="recipe-image"/>
+            <button id="recipe-button">Add recipe</button>
+
+        </div>
+
+        <div class="response-message" id="response-message"></div>
+    </div>
+
+    <script src="./addRecipe.js"></script>
+</body>
+</html>
