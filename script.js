@@ -7,14 +7,16 @@ const getAllFood = async()=>{
 
     food.forEach((recipe) => {
 
-        console.log(recipe);
+        const wrapper = document.createElement("a");
+        wrapper.setAttribute("class", "recipe-wrapper");
+        wrapper.href = "./recipe.html";
+        wrapper.addEventListener("click", () => {
+          localStorage.setItem("recipeId", recipe.id);
+        });
 
-        const image = document.createElement('img');
-        image.setAttribute('class', 'recipe-image');
+        const image = document.createElement("img");
+        image.setAttribute("class", "recipe-image");
         image.src = recipe.img_url;
-
-        const wrapper = document.createElement('div');
-        wrapper.setAttribute('class', 'recipe-wrapper');
 
         const title = document.createElement('h1');
         title.innerHTML = recipe.title;

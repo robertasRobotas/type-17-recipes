@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+
+    <div>
+        <header>
+            <div class="logo">
+                food-app
+            </div>
+
+            <ul class="nav">
+                <li><a href="./index.html">All recipes</a></li>
+                <li><a href="./addRecipe.html">Insert recipe</a></li>
+            </ul>
+        </header>
+    
+        <div class="recipe-container">
+            <div class="image-wrapper">
+                <img id="recipe-page-image" class="recipe-page-image" />
+            </div>
+            <div class="recipe-info">
+                <h1 id="title" class="title"></h1>
+                <h4 id="description" class="description"></h4>
+                <h5 id="instructions" class="instructions"></h5>
+
+                <button id="delete-button" class="delete-button">Delete</button>
+            </div>
+        </div>
+
+        <div class="info-message" id="info-message"></div>
+
+    </div>
+
+    <script src="./recipe.js"></script>
+</body>
+</html>
