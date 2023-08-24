@@ -1,40 +1,42 @@
 const foodWrapper = document.getElementById('food-wrapper');
 
+const buildCard = (recipe) => {
+  const wrapper = document.createElement("a");
+  wrapper.setAttribute("class", "recipe-wrapper");
+  wrapper.href = "./recipe.html?recipeId=" + recipe.id;
 
-const getAllFood = async()=>{
-    const response = await fetch('https://64e2f2b5bac46e480e77f31c.mockapi.io/food');
-    const food = await response.json();
+  const image = document.createElement("img");
+  image.setAttribute("class", "recipe-image");
+  image.src = recipe.img_url;
 
-    food.forEach((recipe) => {
+  const title = document.createElement("h1");
+  title.innerHTML = recipe.title;
 
-        const wrapper = document.createElement("a");
-        wrapper.setAttribute("class", "recipe-wrapper");
-        wrapper.href = "./recipe.html";
-        wrapper.addEventListener("click", () => {
-          localStorage.setItem("recipeId", recipe.id);
-        });
+  const description = document.createElement("p");
+  description.innerHTML = recipe.description;
 
-        const image = document.createElement("img");
-        image.setAttribute("class", "recipe-image");
-        image.src = recipe.img_url;
+  wrapper.append(image);
+  wrapper.append(title);
+  wrapper.append(description);
 
-        const title = document.createElement('h1');
-        title.innerHTML = recipe.title;
+  return wrapper;
+};
 
-        const description = document.createElement('p');
-        description.innerHTML = recipe.description;
+const getAllFood = async () => {
+  const response = await fetch(
+    "https://64e2f2b5bac46e480e77f31c.mockapi.io/food"
+  );
+  const food = await response.json();
 
-        wrapper.append(image);
-        wrapper.append(title);
-        wrapper.append(description);
-
-        // wrapper.append(image, title, description)
-
-        foodWrapper.append(wrapper);
-
+  food
+    .sort((a, b) => {
+      return a.title > b.title ? 1 : -1;
     })
-}
-
+    .forEach((recipe) => {
+      const card = buildCard(recipe);
+      foodWrapper.append(card);
+    });
+};
 
 getAllFood();
 
