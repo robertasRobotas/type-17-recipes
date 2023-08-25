@@ -9,6 +9,23 @@ const getRecipeObject = () => {
   ).value;
   const recipeImage = document.getElementById("recipe-image").value;
 
+    if (!recipeTitle) {
+      console.log("bad recipeTitle");
+    }
+
+    if (!recipeDescription) {
+      console.log("bad recipeDescription");
+    }
+
+    if (!recipeInstructions) {
+      console.log("bad recipeInstructions");
+    }
+
+    if (!recipeImage) {
+      console.log("bad recipeImage");
+    }
+
+
   const recipe = {
     title: recipeTitle,
     description: recipeDescription,
