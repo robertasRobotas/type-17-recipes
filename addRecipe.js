@@ -1,10 +1,8 @@
+import { validateInputForm } from "./src/validation.js";
+
 const recipeFormButton = document.getElementById("recipe-button");
 
-
 const getRecipeObject = () => {
-  const urlRegex =
-    /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
-
   const recipeTitle = document.getElementById("recipe-title").value;
   const recipeDescription = document.getElementById("recipe-description").value;
   const recipeInstructions = document.getElementById(
@@ -12,26 +10,12 @@ const getRecipeObject = () => {
   ).value;
   const recipeImage = document.getElementById("recipe-image").value;
 
-  if (!recipeTitle) {
-    throw new Error("Input is empty");
-  }
-
-  if (!recipeDescription) {
-    throw new Error("Input is empty");
-  }
-
-  if (!recipeInstructions) {
-    throw new Error("Input is empty");
-  }
-
-  if (!recipeImage) {
-    throw new Error("Input is empty");
-  }
-
-  if (!urlRegex.test(recipeImage)) {
-    throw new Error("Bad Link");
-  }
-
+  validateInputForm(
+    recipeTitle,
+    recipeDescription,
+    recipeInstructions,
+    recipeImage
+  );
 
   const recipe = {
     title: recipeTitle,
@@ -79,17 +63,11 @@ const onRecipeInserted = (data) => {
 };
 
 recipeFormButton.addEventListener("click", async () => {
-  const recipe = getRecipeObject();
-  const data = await insertRecipe(recipe);
-  onRecipeInserted(data);
+  try {
+    const recipe = getRecipeObject();
+    const data = await insertRecipe(recipe);
+    onRecipeInserted(data);
+  } catch (err) {
+    console.log("err", err);
+  }
 });
-
-
-
-
-
-
-
-
-
-
