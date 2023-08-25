@@ -2,6 +2,9 @@ const recipeFormButton = document.getElementById("recipe-button");
 
 
 const getRecipeObject = () => {
+  const urlRegex =
+    /^(https?:\/\/)?((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|((\d{1,3}\.){3}\d{1,3}))(:\d+)?(\/[-a-z\d%_.~+]*)*(\?[;&a-z\d%_.~+=-]*)?(\#[-a-z\d_]*)?$/i;
+
   const recipeTitle = document.getElementById("recipe-title").value;
   const recipeDescription = document.getElementById("recipe-description").value;
   const recipeInstructions = document.getElementById(
@@ -9,21 +12,25 @@ const getRecipeObject = () => {
   ).value;
   const recipeImage = document.getElementById("recipe-image").value;
 
-    if (!recipeTitle) {
-      console.log("bad recipeTitle");
-    }
+  if (!recipeTitle) {
+    throw new Error("Input is empty");
+  }
 
-    if (!recipeDescription) {
-      console.log("bad recipeDescription");
-    }
+  if (!recipeDescription) {
+    throw new Error("Input is empty");
+  }
 
-    if (!recipeInstructions) {
-      console.log("bad recipeInstructions");
-    }
+  if (!recipeInstructions) {
+    throw new Error("Input is empty");
+  }
 
-    if (!recipeImage) {
-      console.log("bad recipeImage");
-    }
+  if (!recipeImage) {
+    throw new Error("Input is empty");
+  }
+
+  if (!urlRegex.test(recipeImage)) {
+    throw new Error("Bad Link");
+  }
 
 
   const recipe = {
