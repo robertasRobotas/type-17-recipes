@@ -1,5 +1,6 @@
-const recipeFormButton = document.getElementById("recipe-button");
+import { validateInputForm } from "./src/validation.js";
 
+const recipeFormButton = document.getElementById("recipe-button");
 
 const getRecipeObject = () => {
   const recipeTitle = document.getElementById("recipe-title").value;
@@ -8,6 +9,13 @@ const getRecipeObject = () => {
     "recipe-instructions"
   ).value;
   const recipeImage = document.getElementById("recipe-image").value;
+
+  validateInputForm(
+    recipeTitle,
+    recipeDescription,
+    recipeInstructions,
+    recipeImage
+  );
 
   const recipe = {
     title: recipeTitle,
@@ -55,17 +63,11 @@ const onRecipeInserted = (data) => {
 };
 
 recipeFormButton.addEventListener("click", async () => {
-  const recipe = getRecipeObject();
-  const data = await insertRecipe(recipe);
-  onRecipeInserted(data);
+  try {
+    const recipe = getRecipeObject();
+    const data = await insertRecipe(recipe);
+    onRecipeInserted(data);
+  } catch (err) {
+    console.log("err", err);
+  }
 });
-
-
-
-
-
-
-
-
-
-
